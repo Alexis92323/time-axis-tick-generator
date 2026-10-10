@@ -1,0 +1,17 @@
+{
+  "name": "time-axis-tick-generator",
+  "version": "0.1.0",
+  "description": "Generates rounded, visually pleasing tick marks for a time axis given a start time, end time, and target tick count.",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": "./src/index.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "dependencies": {}
+}
