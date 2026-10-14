@@ -26,3 +26,10 @@ The trade-off is that ticks are anchored to UTC midnight, which is a stable, tim
 Calendar steps (years and months) have variable length: a month is 28-31 days, a year is 365 or 366 days. To keep ticks visually regular on a linear axis, every tick is an integer multiple of the step anchored to a UTC midnight, computed via calendar arithmetic on the `Date` object. This means a year step anchored to Feb 29 in a leap year advances through non-leap years by clamping to Mar 1, and a month step from Jan 31 lands on Feb 28/29. Both are real calendar boundaries; they are not mathematically equidistant, but they are the visually expected positions.
 
 Another edge: for very narrow intervals (shorter than one step), the library always returns at least one tick on the anchor to avoid producing an empty axis. For timestamps outside the representable range of `Date` (roughly ±8.64e15 ms, about ±275,000 years), a `RangeError` is thrown.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
